@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { SearchContext } from "@/context/SearchContext";
 import LocationSelection from "./LocationSelection";
+import DateSelection from "./DateSelection";
 
 function Search() {
   const { searchActive } = useContext(SearchContext);
@@ -15,6 +16,7 @@ function Search() {
 
         <div className="xl:h-full flex items-center px-6 xl:px-0">
         <LocationSelection />
+        <DateSelection />
         </div>
      
     </div>
