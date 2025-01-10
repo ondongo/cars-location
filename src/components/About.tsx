@@ -2,9 +2,9 @@ import React from 'react'
 
 function About() {
   return (
-    <div>
-      
-    </div>
+    <section className='section flex items-center bg-pink-200' id="about">
+      about
+    </section>
   )
 }
 

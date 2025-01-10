@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 // next image import
 import Image from "next/image";
@@ -16,7 +16,10 @@ import { useMediaQuery } from "react-responsive";
 //import react-icons
 import { BiMenuAltRight, BiX } from "react-icons/bi";
 
+import { SearchContext } from "../context/SearchContext";
+
 function Header() {
+  const { setSearchActive } = useContext(SearchContext);
   const [header, setHeader] = useState(false);
 
   const [nav, setNav] = useState(false);
@@ -30,6 +33,14 @@ function Header() {
       } else {
         setHeader(false);
       }
+
+      // search
+
+      if (window.scrollY > 800) {
+        setSearchActive(true);
+      } /* else {
+        setSearchActive(false);
+      } */
     };
     window.addEventListener("scroll", handleScroll);
 
@@ -91,7 +102,7 @@ function Header() {
             smooth={desktopMode}
             spy={true}
           >
-            Notre Collection
+            Notre collection
           </Link>
           <Link
             className="cursor-pointer"
@@ -100,7 +111,7 @@ function Header() {
             activeClass="active"
             spy={true}
           >
-            Notre Histoire
+            Notre histoire
           </Link>
 
           <Link
@@ -110,7 +121,7 @@ function Header() {
             activeClass="active"
             spy={true}
           >
-            Nos Avantages
+            Nos avantages
           </Link>
           <Link
             className="cursor-pointer"
@@ -119,7 +130,7 @@ function Header() {
             activeClass="active"
             spy={true}
           >
-            Nous Contacter
+            Contact
           </Link>
 
           <Link
