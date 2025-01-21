@@ -31,6 +31,22 @@ function DateSelection() {
               Sélectionner date
             </div>
           </div>
+
+          <div className="flex items-center gap-x-3 xl:ml-6">
+            <div className="text-[13px] font-medium text-secondary">
+              {format(date[0].startDate, "dd/MM/yyyy")}
+            </div>
+            <FaArrowRightLong className="text-accent" />
+            <div className="text-[13px] font-medium text-secondary">
+              <div>
+                {date[0].endDate ? (
+                  <div>{format(date[0].endDate, "dd/MM/yyyy")}</div>
+                ) : (
+                  <div>{format(date[0].startDate, "dd/MM/yyyy")}</div>
+                )}
+              </div>
+            </div>
+          </div>
         </Menu.Button>
 
         <Menu.Items

@@ -38,9 +38,9 @@ function Header() {
 
       if (window.scrollY > 800) {
         setSearchActive(true);
-      } /* else {
+      } else {
         setSearchActive(false);
-      } */
+      }
     };
     window.addEventListener("scroll", handleScroll);
 
