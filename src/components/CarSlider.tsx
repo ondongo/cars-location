@@ -259,7 +259,7 @@ function CarSlider() {
                     {car.name}
                   </h3>
                   <h3 className="text-accent font-semibold uppercase">
-                    {car.price}/Jour
+                    {car.price} FCFA / Jour
                   </h3>
                 </div>
 
@@ -272,7 +272,7 @@ function CarSlider() {
                 </div>
               </div>
 
-              <div className="flex gap-x-4 mb-6">
+              <div className="flex gap-x-4 mb-4">
                 {car.info.map((item: CarInfo, index: number) => {
                   return (
                     <div

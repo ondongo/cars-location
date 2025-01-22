@@ -4,7 +4,7 @@ import Brands from "./Brands";
 
 function Cars() {
   return (
-    <section className="h-screen flex items-center " id="cars">
+    <section className="h-screen flex items-center" id="cars">
       <div className="container mx-auto">
         {/*   <Brands /> */}
         <CarSlider />
