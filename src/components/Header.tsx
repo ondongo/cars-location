@@ -1,21 +1,10 @@
 "use client";
 import React, { useState, useEffect, useContext } from "react";
-
-// next image import
 import Image from "next/image";
-
-// link react scroll import
 import { Link } from "react-scroll";
-
-//Import component search mobile
 import SearchMobile from "./SearchMobile";
-
-// import useMediaquery react responsive
 import { useMediaQuery } from "react-responsive";
-
-//import react-icons
 import { BiMenuAltRight, BiX } from "react-icons/bi";
-
 import { SearchContext } from "../context/SearchContext";
 
 function Header() {
@@ -63,7 +52,7 @@ function Header() {
             spy={true}
             className="cursot-pointer"
           >
-            <Image src="/icons/logo.svg" alt="logo" width={194} height={64} />
+            <Image src="/logo2.png" alt="logo" width={64} height={44} />
           </Link>
 
           <div
@@ -102,7 +91,7 @@ function Header() {
             smooth={desktopMode}
             spy={true}
           >
-            Notre collection
+            Automobile
           </Link>
           <Link
             className="cursor-pointer"
@@ -111,7 +100,7 @@ function Header() {
             activeClass="active"
             spy={true}
           >
-            Notre histoire
+            Offre spéciale
           </Link>
 
           <Link
@@ -121,7 +110,7 @@ function Header() {
             activeClass="active"
             spy={true}
           >
-            Nos avantages
+            Divers
           </Link>
           <Link
             className="cursor-pointer"

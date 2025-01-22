@@ -16,10 +16,9 @@ export default function Home() {
       <Hero />
       <Cars />
       <About />
-      <Why />
       <Testimonial />
-      <Cta />
-      <Footer />
+      {/* <Cta /> */}
+     {/*  <Footer /> */}
       <BackToTopBtn />
       <div className="h-[4000px]"></div>
     </main>
