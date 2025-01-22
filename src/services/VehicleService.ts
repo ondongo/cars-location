@@ -5,7 +5,7 @@ export class VehicleService implements IVehicleRepository {
   constructor(private repository: IVehicleRepository) {}
 
   async findAll(): Promise<Vehicle[]> {
-    return this.repository.findAll();
+    return this.repository.findAll()
   }
 
   async findById(id: string): Promise<Vehicle | null> {
