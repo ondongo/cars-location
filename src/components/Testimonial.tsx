@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import TestimonialSlider from "./TestimonialSlider";
 
 function Testimonial() {
   return (
-    <section className="section flex items-center bg-red-200" id="testimonial">Testimonial</section>
-  )
+    <section className="section flex items-center " id="testimonial">
+      <TestimonialSlider />
+    </section>
+  );
 }
 
-export default Testimonial
+export default Testimonial;
