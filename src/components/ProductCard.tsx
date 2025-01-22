@@ -9,7 +9,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ datas }) => {
   return (
-    <div className="max-w-[385px] mx-auto sm:mx-0 bg-gray-100 shadow-sm rounded-lg overflow-hidden">
+    <div className="max-w-[385px] mx-auto sm:mx-0 bg-[#FAFAFA] shadow-sm rounded-lg overflow-hidden">
       <Image
         src={datas.images[0]}
         alt={datas.type}
@@ -40,12 +40,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ datas }) => {
 
         <div className="flex gap-x-4 mb-4">
           {[
-            { text: datas.features.fuel, icon: "/icons/fuel.png" },
+            { text: datas.features.fuel, icon: "icons/carSlider/gas.svg" },
             {
               text: `${datas.features.seats} places`,
-              icon: "/icons/seats.png",
+              icon: "icons/carSlider/engine.svg",
             },
-            { text: datas.features.transmission, icon: "/icons/gear.png" },
+            { text: datas.features.transmission, icon: "icons/carSlider/gearshift.svg" },
           ].map((item, index) => (
             <div key={index} className="flex flex-col items-center text-center">
               <div className="bg-primary w-12 h-12 rounded-full flex justify-center items-center mb-2 shadow-md">

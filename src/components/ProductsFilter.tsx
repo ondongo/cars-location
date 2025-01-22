@@ -31,7 +31,7 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({
 }) => {
   return (
     <div
-      className={`filter-widget w-full fixed lg:relative left-0 top-0 h-screen z-10 lg:h-auto overflow-y-scroll lg:overflow-y-auto bg-white px-[30px] pt-[40px] rounded-lg ${
+      className={`filter-widget w-full fixed lg:relative left-0 top-0 h-screen z-10 lg:h-auto overflow-y-scroll lg:overflow-y-auto bg-[#FAFAFA] shadow-sm px-[30px] pt-[40px] rounded-lg ${
         className || ""
       }  ${filterToggle ? "block" : "hidden lg:block"}`}
     >
@@ -43,7 +43,9 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({
       {/* Categories */}
       <div className="filter-subject-item pb-10 border-b border-gray-300">
         <div className="subject-title mb-[20px]">
-          <h1 className="text-black text-base font-semibold">Catégories</h1>
+          <h1 className="text-black text-base font-semibold">
+            Catégories de véhicules
+          </h1>
         </div>
         <div className="filter-items">
           <ul>
@@ -59,7 +61,7 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({
                   htmlFor="apartments"
                   className="text-sm font-medium capitalize"
                 >
-                  Appartements
+                  Electrique
                 </label>
               </div>
             </li>
@@ -75,7 +77,7 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({
                   htmlFor="vehicles"
                   className="text-sm font-medium capitalize"
                 >
-                  Véhicules
+                  Hybride
                 </label>
               </div>
             </li>
@@ -91,23 +93,24 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({
                   htmlFor="furnitures"
                   className="text-sm font-medium capitalize"
                 >
-                  Meubles
+                  Essence
                 </label>
               </div>
             </li>
+
             <li className="item flex justify-between items-center mb-5">
               <div className="flex space-x-[14px] items-center">
                 <Checkbox
-                  id="electronics"
-                  name="electronics"
+                  id="furnitures"
+                  name="furnitures"
                   handleChange={checkboxHandler}
-                  checked={filters.electronics}
+                  checked={filters.furnitures}
                 />
                 <label
-                  htmlFor="electronics"
+                  htmlFor="furnitures"
                   className="text-sm font-medium capitalize"
                 >
-                  Électroniques
+                  Diesel
                 </label>
               </div>
             </li>
@@ -116,11 +119,11 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({
       </div>
 
       {/* Price Range */}
-      <div className="filter-subject-item pb-10 border-b border-gray-300 mt-10">
-        <div className="subject-title mb-[20px]">
+      <div className="pb-10 border-b border-gray-300 mt-10">
+        <div className="s mb-[20px]">
           <h1 className="text-black text-base font-semibold">Prix</h1>
         </div>
-        <div className="price-range mb-5">
+        <div className="mb-5">
           <RangeSlider
             value={[priceRange.min, priceRange.max]}
             onInput={(value: [number, number]) =>

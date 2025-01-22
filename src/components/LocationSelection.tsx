@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Menu } from "@headlessui/react";
 import { FaMapMarkedAlt } from "react-icons/fa";
 
@@ -15,9 +15,107 @@ const locationList = [
   "Addis-Abeba, Ethiopie",
   "Tunis, Tunisie",
 ];
+interface NominatimResponse {
+  display_name: string;
+  type: string;
+}
 
 function LocationSelection() {
   const [location, setLocation] = useState("Choix de localisation");
+  const [value, setValue] = useState<string>("");
+  const [suggestions, setSuggestions] = useState<NominatimResponse[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [recentlySearched, setRecentlySearched] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (value.length >= 1) {
+      setIsLoading(true);
+      const fetchSuggestions = async () => {
+        try {
+          const response = await fetch(
+            `https://nominatim.openstreetmap.org/search?format=json&q=${value}`
+          );
+          const data: NominatimResponse[] = await response.json();
+          setSuggestions(data);
+        } catch (error) {
+          console.error(error);
+          setSuggestions([]);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+
+      const timeoutId = setTimeout(() => {
+        fetchSuggestions();
+      }, 500);
+
+      return () => clearTimeout(timeoutId);
+    } else {
+      setSuggestions([]);
+      setIsLoading(false);
+    }
+  }, [value]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
+  const handleClear = () => {
+    setValue("");
+    setSuggestions([]);
+    setIsLoading(false);
+  };
+
+  const handleSuggestionClick = (suggestion: NominatimResponse) => {
+    setValue(suggestion.display_name);
+    setSuggestions([]);
+    setIsLoading(false);
+    // Ajouter la recherche récente
+    if (!recentlySearched.includes(suggestion.display_name)) {
+      const updatedRecentlySearched = [
+        suggestion.display_name,
+        ...recentlySearched,
+      ];
+      if (updatedRecentlySearched.length > 5) {
+        updatedRecentlySearched.pop(); // Supprimer le plus ancien s'il y en a plus de 5
+      }
+      setRecentlySearched(updatedRecentlySearched);
+
+      // Stocker dans le localStorage
+      localStorage.setItem(
+        "recentlySearched",
+        JSON.stringify(updatedRecentlySearched)
+      );
+    }
+  };
+
+  useEffect(() => {
+    // Récupérer les recherches récentes depuis le localStorage
+    const storedRecentlySearched = localStorage.getItem("recentlySearched");
+    if (storedRecentlySearched) {
+      setRecentlySearched(JSON.parse(storedRecentlySearched));
+    }
+  }, []);
+
+  const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
+
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  };
+
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
+  };
+
+  // Gérer l'affichage des récents lorsque le champ est en focus
+  const recentSearchesDisplay =
+    isInputFocused && recentlySearched.length > 0 && value === "";
+
+  const handleRecentSearchClick = (recentSearch: string) => {
+    setValue(recentSearch);
+    setSuggestions([]);
+    setIsLoading(false);
+  };
 
   return (
     <Menu as="div" className="w-full h-full flex xl:flex-row">

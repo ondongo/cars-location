@@ -18,7 +18,6 @@ export default function Home() {
       <About />
       <Testimonial />
       {/* <Cta /> */}
-      <Footer />
       <BackToTopBtn />
       {/*  <div className="h-[100vh]"></div> */}
     </main>

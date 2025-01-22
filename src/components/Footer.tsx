@@ -4,7 +4,7 @@ import { Link } from "react-scroll";
 
 function Footer() {
   return (
-    <footer className="bg-gray-100 py-4">
+    <footer className="bg-[#FAFAFA]  py-4">
       <div className="container mx-auto text-center">
         <p className="text-gray-600 text-sm">
           &copy; {new Date().getFullYear()} KO.Zua. Tous droits réservés.
