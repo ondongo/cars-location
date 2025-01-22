@@ -1,0 +1,70 @@
+import { Vehicle } from "@/types/vehicle";
+
+export const fakeVehicles: Vehicle[] = [
+  {
+    id: "1",
+    category: "Car",
+    subcategory: "SUV",
+    type: "Toyota RAV4",
+    brand: "Toyota",
+    model: "RAV4",
+    year: 2022,
+    pricePerDay: 50000,
+    availability: "available",
+    features: {
+      mileage: "10,000 km",
+      fuel: "Gasoline",
+      transmission: "Automatic",
+      seats: 5,
+    },
+    location: {
+      city: "Brazzaville",
+      neighborhood: "Centre-ville",
+    },
+    images: ["/images/rav4.jpg"],
+  },
+  {
+    id: "2",
+    category: "Car",
+    subcategory: "Sedan",
+    type: "Honda Civic",
+    brand: "Honda",
+    model: "Civic",
+    year: 2021,
+    pricePerDay: 45000,
+    availability: "available",
+    features: {
+      mileage: "12,000 km",
+      fuel: "Gasoline",
+      transmission: "Manual",
+      seats: 5,
+    },
+    location: {
+      city: "Pointe-Noire",
+      neighborhood: "Plateau",
+    },
+    images: ["/images/civic.jpg"],
+  },
+  {
+    id: "3",
+    category: "Car",
+    subcategory: "Pickup",
+    type: "Ford Ranger",
+    brand: "Ford",
+    model: "Ranger",
+    year: 2023,
+    pricePerDay: 60000,
+    availability: "available",
+    features: {
+      mileage: "8,000 km",
+      fuel: "Diesel",
+      transmission: "Automatic",
+      seats: 5,
+    },
+    location: {
+      city: "Brazzaville",
+      neighborhood: "Bacongo",
+    },
+    images: ["/images/ranger.jpg"],
+  },
+];

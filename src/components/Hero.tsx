@@ -13,7 +13,7 @@ import { fadeIn } from "../../variant";
 function Hero() {
   const { searchActive } = useContext(SearchContext);
   return (
-    <section className="h-screen xl:h-[90vh] relative " id="home ">
+    <section className="h-screen xl:h-[90vh] relative " id="home">
       <Swiper
         pagination={{
           clickable: true,
