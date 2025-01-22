@@ -52,7 +52,7 @@ function Header() {
             spy={true}
             className="cursot-pointer"
           >
-            <Image src="/logo2.png" alt="logo" width={64} height={44} />
+            <Image src="/Black_And_Red_Modern_Car_Logo__3_-removebg-preview.png" alt="logo" width={64} height={44} />
           </Link>
 
           <div
@@ -92,6 +92,16 @@ function Header() {
             spy={true}
           >
             Automobile
+          </Link>
+
+          <Link
+            className="cursor-pointer"
+            to="abou"
+            activeClass="active"
+            smooth={desktopMode}
+            spy={true}
+          >
+            Immobilier
           </Link>
           <Link
             className="cursor-pointer"

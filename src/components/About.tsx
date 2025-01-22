@@ -28,7 +28,7 @@ function About() {
           >
             <Image
               className="rounded-[20px]"
-              src="/images/about/car01.png"
+              src="/Cars_03_2x.png"
               width={580}
               height={540}
               alt=""

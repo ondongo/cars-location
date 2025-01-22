@@ -9,7 +9,10 @@ import { fadeIn } from "../../variant";
 function Hero() {
   const { searchActive } = useContext(SearchContext);
   return (
-    <section className="h-screen xl:h-[90vh] bg-[#b2b7c2]/10" id="home">
+    <section
+      className="h-screen xl:h-[90vh] bg-[url('/c.svg')] bg-no-repeat bg-contain bg-right"
+      id="home"
+    >
       <div className="container mx-auto h-full pt-10">
         <div className="flex flex-col xl:flex-row justify-center items-center xl:justify-start h-full">
           <div className="text-center xl:max-w-xl xl:text-left mt-16 xl:mt-0">
@@ -18,10 +21,10 @@ function Hero() {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.6 }}
-              className="h1"
+              className="text-3xl xl:text-[54px]  text-primary xl:leading-[62px] font-extrabold mb-[18px]"
             >
-              Location de voiture avec{" "}
-              <span className="text-accent">Ko.Zua</span>
+              Trouvez , réservez , prenez !
+              <span className="text-accent"> Ko.Zua s'occupe du reste</span>
             </motion.h1>
             <motion.p
               variants={fadeIn("down", 0.4)}
@@ -38,14 +41,14 @@ function Hero() {
               initial="hidden"
               whileInView={"show"}
               viewport={{ once: false, amount: 0.8 }}
-              className="flex gap-x-3 justify-center xl:justify-start"
+              className="flex flex-col xl:flex-row gap-x-3 justify-center xl:justify-start "
             >
-              <button className="btn btn-sm btn-accent max-w-[50%] xl:mr-4 mt-4  bg-[#111828] hover:bg-[#111828]/10">
-                Je réserve
+              <button className="btn btn-sm btn-accent xl:max-w-[50%] xl:mr-4 mt-4  bg-[#111828] hover:bg-[#111828]/10">
+                Je réserve un appart
               </button>
 
-              <button className="btn btn-sm btn-accent max-w-[50%] xl:mr-4 mt-4">
-                Voir les voitures
+              <button className="btn btn-sm btn-accent xl:max-w-[50%] xl:mr-4 mt-4">
+                Je réserve une voiture
               </button>
             </motion.div>
           </div>
@@ -58,7 +61,7 @@ function Hero() {
           :right-[120px] xl:top-48"
           >
             <Image
-              src={"/images/hero/car.svg"}
+              src={"/header/voiture.svg"}
               fill
               alt=""
               style={{ objectFit: "contain" }}

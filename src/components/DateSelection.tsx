@@ -58,7 +58,7 @@ function DateSelection() {
             editableDateInputs={true}
             moveRangeOnFirstSelection={false}
             ranges={date}
-            rangeColors={["#ed1d24"]}
+            rangeColors={["#004aad "]}
             minDate={addDays(new Date(), 0)}
           />
         </Menu.Items>
