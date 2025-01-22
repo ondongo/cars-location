@@ -1,5 +1,9 @@
 "use client";
 import React, { useContext } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 import Search from "./Search";
 import { SearchContext } from "@/context/SearchContext";
 import Image from "next/image";
@@ -9,11 +13,54 @@ import { fadeIn } from "../../variant";
 function Hero() {
   const { searchActive } = useContext(SearchContext);
   return (
-    <section
-      className="h-screen xl:h-[90vh] bg-[url('/c.svg')] bg-no-repeat bg-contain bg-right"
-      id="home"
-    >
-      <div className="container mx-auto h-full pt-10">
+    <section className="h-screen xl:h-[90vh] relative " id="home ">
+      <Swiper
+        pagination={{
+          clickable: true,
+          el: '.swiper-custom-pagination',
+          bulletClass: 'swiper-pagination-bullet',
+          bulletActiveClass: 'swiper-pagination-bullet-active',
+          renderBullet: function (index, className) {
+            return `<span class="${className} flex items-center justify-center text-5xl hover:scale-110 hover:text-accent transition-all">
+              ${index === 0 ? '↑' : '↓'}
+            </span>`;
+          },
+        }}
+        modules={[Pagination]}
+        className="h-full"
+      >
+        <SwiperSlide>
+          <div className="h-full bg-[url('/c.svg')] bg-no-repeat bg-contain bg-right">
+            <motion.div
+              variants={fadeIn("up", 0.6)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.6 }}
+              className="relative w-full h-full max-w-[50vh] md:max-w-[70vw] xl:max-w-[600px] xl:max-h-[430px] xl:absolute xl:right-[100px] min-[1680px]:right-[120px] xl:top-48"
+            >
+              <Image
+                src={"/header/voiture.svg"}
+                fill
+                alt=""
+                style={{ objectFit: "contain" }}
+                priority
+              />
+            </motion.div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <motion.div
+            variants={fadeIn("up", 0.6)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.6 }}
+            className="h-full bg-[url('/header/estate.svg')] bg-no-repeat bg-contain bg-right"
+          ></motion.div>
+        </SwiperSlide>
+        <div className="swiper-custom-pagination absolute right-5 top-1/2 transform -translate-y-1/2 flex flex-col gap-20 z-50"></div>
+      </Swiper>
+
+      <div className="container mx-auto h-full pt-10 absolute top-0 left-0 right-0">
         <div className="flex flex-col xl:flex-row justify-center items-center xl:justify-start h-full">
           <div className="text-center xl:max-w-xl xl:text-left mt-16 xl:mt-0">
             <motion.h1
@@ -52,22 +99,6 @@ function Hero() {
               </button>
             </motion.div>
           </div>
-          <motion.div
-            variants={fadeIn("up", 0.6)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.6 }}
-            className="relative w-full h-full max-w-[50vh] md:max-w-[70vw] xl:max-w-[600px] xl:max-h-[430px] xl:absolute xl:right-[100px] min-[1680px]
-          :right-[120px] xl:top-48"
-          >
-            <Image
-              src={"/header/voiture.svg"}
-              fill
-              alt=""
-              style={{ objectFit: "contain" }}
-              priority
-            />{" "}
-          </motion.div>
         </div>
       </div>
       {searchActive ? (
@@ -81,7 +112,7 @@ function Hero() {
           <Search />
         </motion.div>
       ) : (
-        <div className="-mt-12 w-full max-w-[1300px] mx-auto">
+        <div className="absolute z-50 bottom-90 left-0 right-0  w-full max-w-[1300px] mx-auto">
           <motion.div
             /* variants={fadeIn("up", 0.6)}
             initial="hidden"

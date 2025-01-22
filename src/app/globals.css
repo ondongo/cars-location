@@ -3,6 +3,19 @@
 @tailwind utilities;
 
 /* date range custom css */
+.swiper-custom-pagination {
+  position: absolute !important;
+  top: 10% !important;
+  transform: translateY(-50%) !important;
+  transform: translateX(-4%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center;
+  align-items: flex-end !important;
+  gap: 4rem !important; 
+  z-index: 50 !important;
+}
+
 
 .rdrDayToday:not(.rdrDayPassive) .rdrInRange ~ .rdrDayNumber span::after,
 .rdrDayToday:not(.rdrDayPassive) .rdrStartEdge ~ .rdrDayNumber span::after,

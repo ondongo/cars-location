@@ -18,9 +18,9 @@ export default function Home() {
       <About />
       <Testimonial />
       {/* <Cta /> */}
-     {/*  <Footer /> */}
+      <Footer />
       <BackToTopBtn />
-     {/*  <div className="h-[100vh]"></div> */}
+      {/*  <div className="h-[100vh]"></div> */}
     </main>
   );
 }
