@@ -28,6 +28,11 @@ export default {
         },
         body: "#dedede",
       },
+      fontFamily: {
+        sans: ['"Montserrat"', 'sans-serif'], // Remplacez "sans" si vous souhaitez en faire la police par défaut.
+        montserrat: ['"Montserrat"', 'sans-serif'], // Clé personnalisée pour Montserrat.
+      },
+
       backgroundImage: {
         "gradient-radial":
           "radial-gradient(var(--tw-gradient-background-stops))",

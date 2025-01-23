@@ -3,6 +3,7 @@ import { App } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 import { serviceAccount } from "../../serviceAccount";
 
+
 export const adminApp =
   admin.apps.length === 0
     ? admin.initializeApp({

@@ -1,5 +1,9 @@
-import RangeSlider from "react-range-slider-input";
-import Checkbox from "./helpers/CheckBox";
+import { useState } from "react";
+
+import RangeSlider from "./RangeSlider";
+
+import { FaCalendarAlt, FaStar } from "react-icons/fa";
+
 
 interface ProductsFilterProps {
   filters: {
@@ -29,6 +33,9 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({
   filterToggle,
   filterToggleHandler,
 }) => {
+  const [availability, setAvailability] = useState<string>("all");
+  const [rating, setRating] = useState<number>(0);
+
   return (
     <div
       className={`filter-widget w-full fixed lg:relative left-0 top-0 h-screen z-10 lg:h-auto overflow-y-scroll lg:overflow-y-auto bg-[#FAFAFA] shadow-sm px-[30px] pt-[40px] rounded-lg ${
@@ -36,15 +43,12 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({
       }  ${filterToggle ? "block" : "hidden lg:block"}`}
     >
       {/* Title */}
-      <div className="subject-title mb-[30px]">
-        <h1 className="text-black text-base font-bold">Filtres de recherche</h1>
-      </div>
 
       {/* Categories */}
-      <div className="filter-subject-item pb-10 border-b border-gray-300">
+     {/*  <div className="filter-subject-item pb-4 border-b border-gray-300">
         <div className="subject-title mb-[20px]">
           <h1 className="text-black text-base font-semibold">
-            Catégories de véhicules
+            Filtrer par catégories
           </h1>
         </div>
         <div className="filter-items">
@@ -117,29 +121,79 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({
           </ul>
         </div>
       </div>
+ */}
+      <div className="pb-6 border-b border-gray-300">
+        <h1 className="text-black text-base font-semibold mb-[20px]">
+          Disponibilité
+        </h1>
+        <div className="space-y-2">
+          <label className="flex items-center space-x-2">
+            <input
+              type="radio"
+              name="availability"
+              value="all"
+              checked={availability === "all"}
+              onChange={() => setAvailability("all")}
+              className="form-radio h-4 w-4 text-accent"
+            />
+            <span className="text-sm text-gray-800">Tous</span>
+          </label>
+          <label className="flex items-center space-x-2">
+            <input
+              type="radio"
+              name="availability"
+              value="available"
+              checked={availability === "available"}
+              onChange={() => setAvailability("available")}
+              className="form-radio h-4 w-4 text-accent"
+            />
+            <span className="text-sm text-gray-800">Disponible</span>
+          </label>
+          <label className="flex items-center space-x-2">
+            <input
+              type="radio"
+              name="availability"
+              value="unavailable"
+              checked={availability === "unavailable"}
+              onChange={() => setAvailability("unavailable")}
+              className="form-radio h-4 w-4 text-accent"
+            />
+            <span className="text-sm text-gray-800">Indisponible</span>
+          </label>
+        </div>
+      </div>
 
       {/* Price Range */}
-      <div className="pb-10 border-b border-gray-300 mt-10">
-        <div className="s mb-[20px]">
-          <h1 className="text-black text-base font-semibold">Prix</h1>
+      <div className="pb-6 border-b border-gray-300 mt-10">
+        <div className="mb-[20px]">
+          <h1 className="text-black text-base font-semibold">
+            Filtrer par prix
+          </h1>
         </div>
-        <div className="mb-5">
-          <RangeSlider
-            value={[priceRange.min, priceRange.max]}
-            onInput={(value: [number, number]) =>
-              priceRangeHandler({ min: value[0], max: value[1] })
-            }
-            min={10}
-            max={1000}
-          />
+        <div className="">
+          <RangeSlider />
         </div>
-        <p className="text-sm text-gray-600">
-          Prix : {priceRange.min} XOF - {priceRange.max} XOF
-        </p>
+      </div>
+
+
+      {/* Filtrer par étoiles */}
+      <div className="pb-4 border-b border-gray-300">
+        <h1 className="text-black text-base font-semibold my-4">Évaluation</h1>
+        <div className="flex space-x-2 ">
+          {Array.from({ length: 5 }, (_, i) => (
+            <FaStar
+              key={i}
+              className={`cursor-pointer ${
+                rating > i ? "text-yellow-500" : "text-gray-300"
+              }`}
+              onClick={() => setRating(i + 1)}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Locations */}
-      <div className="filter-subject-item pb-10 border-b border-gray-300 mt-10">
+      <div className="filter-subject-item pb-4 border-b mt-10">
         <div className="subject-title mb-[20px]">
           <h1 className="text-black text-base font-semibold">Localisation</h1>
         </div>
@@ -168,26 +222,6 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({
           </ul>
         </div>
       </div>
-
-      {/* Toggle Button */}
-      <button
-        onClick={filterToggleHandler}
-        type="button"
-        className="w-10 h-10 fixed top-5 right-5 z-50 rounded lg:hidden flex justify-center items-center border border-red-500 text-red-500"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </button>
     </div>
   );
 };

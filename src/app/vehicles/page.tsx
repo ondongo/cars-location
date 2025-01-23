@@ -42,7 +42,7 @@ function page() {
     <main className="max-w-[1920px] bg-white mx-auto overflow-hidden">
       <NavBarStatic />
       <div className="p-10 mt-20">
-        <div className="w-full lg:flex lg:space-x-[30px]">
+        <div className="w-full flex flex-col xl:flex-row xl:space-x-[30px]">
           <div className="lg:w-[270px]">
             <ProductsFilter
               filters={filters}
@@ -55,6 +55,10 @@ function page() {
               filterToggle={filterToggle}
               filterToggleHandler={filterToggleHandler}
             />
+
+            <button className="btn btn-sm btn-accent  mt-4  bg-[#111828] hover:bg-[#111828]">
+              Filtrer
+            </button>
           </div>
 
           <div className="flex-1">

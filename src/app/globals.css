@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -39,7 +40,7 @@
 
 @layer base {
   body {
-    @apply text-primary bg-body;
+    @apply text-primary bg-body font-montserrat;
   }
 
   p {
@@ -90,5 +91,83 @@
   }
   .active {
     @apply text-accent;
+  }
+}
+
+
+.SliderThumb {
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  padding: 8px;
+  background-color: #0A3D62;
+  border: none;
+  position: relative;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.SliderThumb:focus::after,
+.SliderThumb:active::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border: 1px dotted white;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.SliderThumb:focus::before,
+.SliderThumb:active::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  background: radial-gradient(
+    circle,
+    rgba(0, 136, 216, 0.4) 60%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  z-index: -1;
+}
+
+
+/************************************************************/
+/*           Loader OpenStreet map Search                  */
+/***********************************************************/
+.loader {
+  width: 30px;
+  aspect-ratio: 1;
+  display: grid;
+  mask: conic-gradient(from 15deg, #0000, #000);
+  animation: l26 1s infinite steps(12);
+}
+.loader,
+.loader:before,
+.loader:after {
+  background: radial-gradient(closest-side at 50% 12.5%, #777777 96%, #0000) 50%
+      0/20% 80% repeat-y,
+    radial-gradient(closest-side at 12.5% 50%, #777777 96%, #0000) 0 50%/80% 20%
+      repeat-x;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  grid-area: 1/1;
+  transform: rotate(30deg);
+}
+.loader:after {
+  transform: rotate(60deg);
+}
+
+@keyframes l26 {
+  100% {
+    transform: rotate(1turn);
   }
 }

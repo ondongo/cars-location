@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
 import Image from "next/image";
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCalendarAlt, FaCheckCircle } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -10,12 +10,26 @@ import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../../variant";
-function VehicleDetailsPage({ params }: { params: { id: string } }) {
+import { DateRange } from "react-date-range";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import { FaArrowRightLong } from "react-icons/fa6";
+import NavBarStatic from "@/components/NavBarStatic";
+function VehicleDetailsPage({ params }: any) {
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<any>(null);
   const [activeTab, setActiveTab] = useState<"description" | "reviews">(
     "description"
   );
+
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
+  const [showDatePicker, setShowDatePicker] = useState(false);
   const vehicle = {
     name: "BMW",
     pricePerDay: 25000,
@@ -69,7 +83,8 @@ function VehicleDetailsPage({ params }: { params: { id: string } }) {
 
   return (
     <main className="max-w-[1920px] bg-white mx-auto overflow-hidden">
-      <div className="container mx-auto py-10 px-4">
+      <NavBarStatic />
+      <div className="container mx-auto py-10 px-4 mt-20">
         {/* Détails principaux */}
 
         <div>
@@ -130,15 +145,68 @@ function VehicleDetailsPage({ params }: { params: { id: string } }) {
                 <h1 className="text-3xl font-bold">{vehicle.name}</h1>
 
                 <div className="flex flex-row justify-between w-[100%">
-                  <p className="text-md text-secondary">Categorie : voiture</p>
-                  <p className="text-md text-green-500">Disponible</p>
+                  <p className="text-md text-secondary">
+                    Categorie <span className="font-semibold"> : sport</span>
+                  </p>
+                  <div className="relative z-10 rounded-full bg-green-50 px-3 py-1.5 font-medium text-green-600">
+                    Disponible
+                  </div>
                 </div>
 
                 <p className="text-3xl text-accent font-bold mt-4">
                   {vehicle.pricePerDay} FCFA / jour
                 </p>
               </div>
-              <h2 className="text-2xl font-semibold mb-4">
+
+              {/* Filtrer par date */}
+              <div>
+                <h3 className="font-bold text-md mb-4">
+                  Selectionner une plage de date reservation disponible
+                </h3>
+                <div
+                  onClick={() => setShowDatePicker(!showDatePicker)}
+                  className="cursor-pointer flex items-center justify-between bg-gray-100 p-3 rounded-lg"
+                >
+                  <div className="flex items-center gap-2 text-sm">
+                    <FaCalendarAlt className="text-accent" />
+                    <span>
+                      {date[0].startDate.toLocaleDateString()} -{" "}
+                      {date[0].endDate?.toLocaleDateString()}
+                    </span>
+                  </div>
+                  <FaArrowRightLong className="text-accent" />
+                </div>
+                {showDatePicker && (
+                  <div className="mt-4">
+                    <DateRange
+                      onChange={(item: any) => setDate([item.selection])}
+                      ranges={date}
+                      rangeColors={["#004aad"]}
+                      editableDateInputs={true}
+                      moveRangeOnFirstSelection={false}
+                      minDate={new Date()}
+                    />
+                  </div>
+                )}
+              </div>
+
+              <motion.div
+                /* variants={fadeIn("down", 0.6)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: false, amount: 0.8 }} */
+                className="flex flex-col xl:flex-row gap-x-3 justify-center xl:justify-start  mb-10"
+              >
+                <button className="btn btn-sm btn-accent xl:max-w-[50%]  mt-4  bg-[#111828] hover:bg-[#111828]/10">
+                  Réserver pour une location
+                </button>
+
+                <button className="btn btn-sm btn-accent xl:max-w-[50%]  mt-4">
+                  Achat éclair
+                </button>
+              </motion.div>
+
+              <h2 className="text-xl font-semibold mb-4">
                 Technical Specification
               </h2>
               <div className="grid grid-cols-3 gap-4">
@@ -147,6 +215,14 @@ function VehicleDetailsPage({ params }: { params: { id: string } }) {
                     key={index}
                     className="p-4 bg-[#FAFAFA] rounded-lg text-start w-[196px] h-[148px] "
                   >
+                    <div className="bg-primary w-12 h-12 rounded-full flex justify-center items-center mb-2 shadow-md">
+                      <Image
+                        src={index ===1 ? "/icons/carSlider/engine.svg" : "/icons/carSlider/gas.svg"}
+                        width={24}
+                        height={24}
+                        alt={""}
+                      />
+                    </div>
                     <p className="text-lg font-bold text-black ">
                       {spec.label}
                     </p>
@@ -154,22 +230,6 @@ function VehicleDetailsPage({ params }: { params: { id: string } }) {
                   </div>
                 ))}
               </div>
-
-              <motion.div
-                /* variants={fadeIn("down", 0.6)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.8 }} */
-                className="flex flex-col xl:flex-row gap-x-3 justify-center xl:justify-start "
-              >
-                <button className="btn btn-sm btn-accent xl:max-w-[50%] xl:mr-4 mt-4  bg-[#111828] hover:bg-[#111828]/10">
-                  Réserver pour une location
-                </button>
-
-                <button className="btn btn-sm btn-accent xl:max-w-[50%] xl:mr-4 mt-4">
-                  Achat éclair
-                </button>
-              </motion.div>
 
               {/* Équipement */}
               <div className="mt-6 mb-10">

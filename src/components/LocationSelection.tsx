@@ -1,7 +1,10 @@
 "use client";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu } from "@headlessui/react";
-import { FaMapMarkedAlt } from "react-icons/fa";
+import { FaBuilding, FaMapMarkedAlt } from "react-icons/fa";
+import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
+import { IoLocationOutline } from "react-icons/io5";
+import SpinnerLoader from "./SpinnerLoader";
 
 const locationList = [
   "Le Caire, Egypte",
@@ -33,7 +36,7 @@ function LocationSelection() {
       const fetchSuggestions = async () => {
         try {
           const response = await fetch(
-            `https://nominatim.openstreetmap.org/search?format=json&q=${value}`
+            `https://nominatim.openstreetmap.org/search?format=json&q=${value}, Congo&viewbox=11.8315,-4.1778,15.3115,-4.8889&bounded=1`
           );
           const data: NominatimResponse[] = await response.json();
           setSuggestions(data);
@@ -118,40 +121,80 @@ function LocationSelection() {
   };
 
   return (
-    <Menu as="div" className="w-full h-full flex xl:flex-row">
-      <div className="relative flex-1">
-        <Menu.Button className="dropdown-btn w-full h-full flex flex-col justify-center items-center xl:items-start xl:pl-8">
-          <div className="w-full h-16 xl:h-full flex justify-center xl:justify-start xl:border-r xl:border-black/10">
-            <div className="flex flex-col justify-center">
-              <div className="flex flex-col xl:flex-row items-center xl:gap-x-2 gap-y-2 xl:gap-y-0">
-                <FaMapMarkedAlt className="text-accent" />
-                <div className="text-[15px] uppercase font-bold">
-                  Sélectionner lieu
-                </div>
-              </div>
-              <div className="uppercase font-medium text-[13px] text-secondary text-center xl:ml-6 xl:text-left">
-                {location}
-              </div>
-            </div>
-          </div>
-        </Menu.Button>
-
-        <Menu.Items
-          className="dropdown-menu shadow-lg absolute -top-56 xl:top-[90px] left-1/2 xl:left-0 z-10
-         transform -translate-x-1/2 xl:-translate-x-0 text-sm text-center xl:text-left w-full bg-white max-w-[332px] py-6 rounded-[10px]"
-        >
-          {locationList.map((loc) => (
-            <div
-              key={loc}
-              onClick={() => setLocation(loc)}
-              className="curor-pointer py-4 xl:pl-10 hover:bg-gray-50 text-[13px] uppercase"
+    <div className="relative w-full h-full">
+      <div className="flex justify-center items-center w-full h-full gap-2.5 py-1 ">
+        <input
+          type="text"
+          className="w-full h-[40px] ml-6 pl-3 rounded-lg placeholder-black placeholder-opacity-50 font-medium focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent"
+          placeholder="Rechercher un lieu de location ..."
+          value={value}
+          onChange={handleInputChange}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+        />
+        {value && (
+          <div className="absolute inset-y-0 right-1 flex items-center">
+            <button
+              onClick={handleClear}
+              className="text-white bg-accent rounded-full p-1"
+              aria-label="Clear input"
             >
-              {loc}
-            </div>
-          ))}
-        </Menu.Items>
+              <AiOutlineClose />
+            </button>
+          </div>
+        )}
       </div>
-    </Menu>
+      <div className="absolute w-full bg-white mt-4 rounded-lg shadow-lg z-10 max-h-[300px] min-w-[380px] overflow-y-auto">
+        {isLoading ? (
+          <div className="flex items-center justify-center p-4 min-h-[200px]">
+            <SpinnerLoader />
+          </div>
+        ) : recentSearchesDisplay ? (
+          <>
+            <div className="bg-gray-200 p-5 flex justify-center">
+              <p className="font-bold text-md text-black">Endroits récemment recherchés</p>
+            </div>
+            <ul>
+              {recentlySearched.map((recentSearch, index) => (
+                <li
+                  key={index}
+                  className="mx-2 my-2 p-4 cursor-pointer bg-transparent border border-transparent rounded-lg hover:bg-gray-100 flex items-center gap-2.5"
+                  onClick={() => handleRecentSearchClick(recentSearch)}
+                >
+                  <IoLocationOutline className="text-[#539CD0] text-xl" />
+                  {recentSearch}
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : suggestions.length > 0 ? (
+          <ul>
+            {suggestions.map((suggestion, index) => (
+              <li
+                key={index}
+                className="mx-2 my-2 p-4 cursor-pointer bg-transparent border border-transparent rounded-lg hover:bg-gray-100 flex items-center gap-2.5"
+                onClick={() => handleSuggestionClick(suggestion)}
+              >
+                {suggestion.type === "hotel" ||
+                suggestion.type === "love_hotel" ? (
+                  <FaBuilding className="text-[#FC9D15] text-lg" />
+                ) : (
+                  <IoLocationOutline className="text-[#539CD0] text-xl" />
+                )}
+                {suggestion.display_name}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          /* value.length > 2 && (
+            <div className="flex items-center justify-center p-4">
+              <p>Aucun résultat trouvé.</p>
+            </div>
+          ) */
+         null
+        )}
+      </div>
+    </div>
   );
 }
 
