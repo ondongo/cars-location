@@ -3,9 +3,14 @@ import { SearchContext } from "@/context/SearchContext";
 import LocationSelection from "./LocationSelection";
 import DateSelection from "./DateSelection";
 import HourSelection from "./HourSelection";
+import { useRouter } from "next/navigation";
 
 function Search() {
   const { searchActive } = useContext(SearchContext);
+  const router = useRouter();
+  function handleSearch() {
+    router.push("/vehicles");
+  }
   return (
     <div
       className={`${
@@ -26,6 +31,7 @@ function Search() {
                 ? "btn btn-sm btn-accent xl:w-[164px] xl:mr-4 "
                 : "btn btn-lg btn-accent xl:w-[184px] xl:mr-4"
             }`}
+            onClick={handleSearch}
           >
             Rechercher
           </button>

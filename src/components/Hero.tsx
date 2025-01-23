@@ -9,20 +9,25 @@ import { SearchContext } from "@/context/SearchContext";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../variant";
+import { useRouter } from "next/navigation";
 
 function Hero() {
   const { searchActive } = useContext(SearchContext);
+  const router = useRouter();
+  function handleSearch() {
+    router.push("/vehicles");
+  }
   return (
     <section className="h-screen xl:h-[90vh] relative " id="home">
       <Swiper
         pagination={{
           clickable: true,
-          el: '.swiper-custom-pagination',
-          bulletClass: 'swiper-pagination-bullet',
-          bulletActiveClass: 'swiper-pagination-bullet-active',
+          el: ".swiper-custom-pagination",
+          bulletClass: "swiper-pagination-bullet",
+          bulletActiveClass: "swiper-pagination-bullet-active",
           renderBullet: function (index, className) {
             return `<span class="${className} flex items-center justify-center text-5xl hover:scale-110 hover:text-accent transition-all">
-              ${index === 0 ? '↑' : '↓'}
+              ${index === 0 ? "↑" : "↓"}
             </span>`;
           },
         }}
@@ -94,7 +99,10 @@ function Hero() {
                 Je réserve un appart
               </button>
 
-              <button className="btn btn-sm btn-accent xl:max-w-[50%] xl:mr-4 mt-4">
+              <button
+                className="btn btn-sm btn-accent xl:max-w-[50%] xl:mr-4 mt-4"
+                onClick={handleSearch}
+              >
                 Je réserve une voiture
               </button>
             </motion.div>

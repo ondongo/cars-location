@@ -2,12 +2,17 @@ import React from "react";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { Vehicle } from "@/types/vehicle";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
   datas: Vehicle;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ datas }) => {
+  const router = useRouter();
+  function handleDetail() {
+    router.push("/vehicles/1");
+  }
   return (
     <div className="max-w-[385px] mx-auto sm:mx-0 bg-[#FAFAFA] shadow-sm rounded-lg overflow-hidden">
       <Image
@@ -56,7 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ datas }) => {
           ))}
         </div>
 
-        <button className="btn btn-accent btn-lg w-full py-3 rounded-lg">
+        <button className="btn btn-accent btn-lg w-full py-3 rounded-lg" onClick={handleDetail}>
           Voir plus
         </button>
       </div>

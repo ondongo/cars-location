@@ -6,6 +6,7 @@ import productDatas from "../../data/products.json";
 import ProductCard from "@/components/ProductCard";
 import { fakeVehicles } from "@/data/fakeVehicles";
 import NavBarStatic from "@/components/NavBarStatic";
+import { useRouter } from "next/navigation";
 
 function page() {
   const [filters, setFilters] = useState({
@@ -38,6 +39,7 @@ function page() {
 
   const { products } = productDatas;
 
+ 
   return (
     <main className="max-w-[1920px] bg-white mx-auto overflow-hidden">
       <NavBarStatic />
