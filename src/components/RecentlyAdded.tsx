@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../variant";
 import { Tab } from "@headlessui/react";
 import classNames from "classnames";
+import ImmoSlider from "./ImmoSlider";
 
 function RecentlyAdded() {
   return (
@@ -26,7 +27,7 @@ function RecentlyAdded() {
               className={({ selected }: any) =>
                 classNames(
                   "w-full rounded-lg py-2.5 text-sm font-medium leading-5",
-                  'ring-white/60 ring-offset-1 ring-offset-transparent focus:outline-none focus:ring-1',
+                  "ring-white/60 ring-offset-1 ring-offset-transparent focus:outline-none focus:ring-1",
                   selected
                     ? "bg-white text-accent shadow"
                     : "text-[#111828] hover:bg-white/[0.12] hover:text-white"
@@ -40,7 +41,7 @@ function RecentlyAdded() {
               className={({ selected }: any) =>
                 classNames(
                   "w-full rounded-lg py-2.5 text-sm font-medium leading-5",
-                  'ring-white/60 ring-offset-1 ring-offset-transparent focus:outline-none focus:ring-1',
+                  "ring-white/60 ring-offset-1 ring-offset-transparent focus:outline-none focus:ring-1",
                   selected
                     ? "bg-white text-accent shadow"
                     : "text-[#111828] hover:bg-white/[0.12] hover:text-white"
@@ -51,10 +52,16 @@ function RecentlyAdded() {
             </Tab>
           </Tab.List>
           <Tab.Panels className="mt-2">
-            <CarSlider />
-          </Tab.Panels>
+            {/* Panel for Voiture */}
+            <Tab.Panel>
+              <CarSlider />
+            </Tab.Panel>
 
-          <Tab.Panels className="mt-2">zjjdjdjd</Tab.Panels>
+            {/* Panel for Immobilier */}
+            <Tab.Panel>
+              <ImmoSlider />
+            </Tab.Panel>
+          </Tab.Panels>
         </Tab.Group>
       </motion.div>
     </section>
