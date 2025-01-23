@@ -18,7 +18,7 @@ const houses = [
     id: 1,
     type: "Appartement",
     name: "Appartement moderne",
-    img: "https://example.com/images/apartment1.jpg",
+    img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
     price: 120000,
     info: [
       {
@@ -43,7 +43,7 @@ const houses = [
     id: 2,
     type: "Maison",
     name: "Maison familiale",
-    img: "https://example.com/images/house1.jpg",
+    img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
     price: 250000,
     info: [
       {
@@ -68,7 +68,7 @@ const houses = [
     id: 3,
     type: "Appartement",
     name: "Loft spacieux",
-    img: "https://example.com/images/apartment2.jpg",
+    img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
     price: 180000,
     info: [
       {
@@ -93,7 +93,7 @@ const houses = [
     id: 4,
     type: "Maison",
     name: "Villa de luxe",
-    img: "https://example.com/images/house2.jpg",
+    img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
     price: 500000,
     info: [
       {
@@ -118,7 +118,7 @@ const houses = [
     id: 5,
     type: "Appartement",
     name: "Studio cosy",
-    img: "https://example.com/images/apartment3.jpg",
+    img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
     price: 80000,
     info: [
       {
@@ -143,7 +143,7 @@ const houses = [
     id: 6,
     type: "Maison",
     name: "Maison de campagne",
-    img: "https://example.com/images/house3.jpg",
+    img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
     price: 300000,
     info: [
       {
