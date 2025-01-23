@@ -120,7 +120,7 @@ function Hero() {
           <Search />
         </motion.div>
       ) : (
-        <div className="absolute z-50 bottom-90 left-0 right-0  w-full max-w-[1300px] mx-auto">
+        <div className="absolute z-10 bottom-90 left-0 right-0  w-full max-w-[1300px] mx-auto">
           <motion.div
             /* variants={fadeIn("up", 0.6)}
             initial="hidden"

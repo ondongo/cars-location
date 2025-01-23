@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
 import Image from "next/image";
-import { FaCalendarAlt, FaCheckCircle } from "react-icons/fa";
+import { FaCalendarAlt, FaCheckCircle, FaStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -48,6 +48,24 @@ function VehicleDetailsPage({ params }: any) {
       { label: "Distance", value: "500 km" },
     ],
     equipment: ["ABS", "Air Bags", "Cruise Control", "Air Conditioner"],
+    info: [
+      {
+        icon: "icons/carSlider/gearshift.svg",
+        text: "Auto",
+      },
+      {
+        icon: "icons/carSlider/seat.svg",
+        text: "4 Places",
+      },
+      {
+        icon: "icons/carSlider/gas.svg",
+        text: "Essence",
+      },
+      {
+        icon: "icons/carSlider/engine.svg",
+        text: "5.0L V8",
+      },
+    ],
   };
 
   const otherCars = [
@@ -57,6 +75,24 @@ function VehicleDetailsPage({ params }: any) {
       image: "/images/carGray.png",
       type: "Sedan",
       features: ["Automatic", "PB 95", "Air Conditioner"],
+      info: [
+        {
+          icon: "/icons/carSlider/gearshift.svg",
+          text: "Auto",
+        },
+        {
+          icon: "/icons/carSlider/seat.svg",
+          text: "4 Places",
+        },
+        {
+          icon: "/icons/carSlider/gas.svg",
+          text: "Essence",
+        },
+        {
+          icon: "/icons/carSlider/engine.svg",
+          text: "5.0L V8",
+        },
+      ],
     },
     {
       name: "Mercedes",
@@ -64,6 +100,24 @@ function VehicleDetailsPage({ params }: any) {
       image: "/images/carGray.png",
       type: "Sport",
       features: ["Automatic", "PB 95", "Air Conditioner"],
+      info: [
+        {
+          icon: "/icons/carSlider/gearshift.svg",
+          text: "Auto",
+        },
+        {
+          icon: "/icons/carSlider/seat.svg",
+          text: "4 Places",
+        },
+        {
+          icon: "/icons/carSlider/gas.svg",
+          text: "Essence",
+        },
+        {
+          icon: "/icons/carSlider/engine.svg",
+          text: "5.0L V8",
+        },
+      ],
     },
     {
       name: "Mercedes",
@@ -71,6 +125,24 @@ function VehicleDetailsPage({ params }: any) {
       image: "/images/carGray.png",
       type: "Sedan",
       features: ["Automatic", "PB 95", "Air Conditioner"],
+      info: [
+        {
+          icon: "/icons/carSlider/gearshift.svg",
+          text: "Auto",
+        },
+        {
+          icon: "/icons/carSlider/seat.svg",
+          text: "4 Places",
+        },
+        {
+          icon: "/icons/carSlider/gas.svg",
+          text: "Essence",
+        },
+        {
+          icon: "/icons/carSlider/engine.svg",
+          text: "5.0L V8",
+        },
+      ],
     },
     {
       name: "Mercedes",
@@ -78,6 +150,24 @@ function VehicleDetailsPage({ params }: any) {
       image: "/images/carGray.png",
       type: "Sedan",
       features: ["Automatic", "PB 95", "Air Conditioner"],
+      info: [
+        {
+          icon: "/icons/carSlider/gearshift.svg",
+          text: "Auto",
+        },
+        {
+          icon: "/icons/carSlider/seat.svg",
+          text: "4 Places",
+        },
+        {
+          icon: "/icons/carSlider/gas.svg",
+          text: "Essence",
+        },
+        {
+          icon: "/icons/carSlider/engine.svg",
+          text: "5.0L V8",
+        },
+      ],
     },
   ];
 
@@ -217,7 +307,11 @@ function VehicleDetailsPage({ params }: any) {
                   >
                     <div className="bg-primary w-12 h-12 rounded-full flex justify-center items-center mb-2 shadow-md">
                       <Image
-                        src={index ===1 ? "/icons/carSlider/engine.svg" : "/icons/carSlider/gas.svg"}
+                        src={
+                          index === 1
+                            ? "/icons/carSlider/engine.svg"
+                            : "/icons/carSlider/gas.svg"
+                        }
                         width={24}
                         height={24}
                         alt={""}
@@ -321,36 +415,62 @@ function VehicleDetailsPage({ params }: any) {
           {/* Other Cars  */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {otherCars.map((car, index) => (
-              <div
-                key={index}
-                className="p-4 bg-[#FAFAFA] rounded-lg shadow-sm text-center max-w-[360px] "
-              >
+              <div key={index} className="max-w-[385px] mx-auto sm:mx-0 bg-gray-100 shadow-sm rounded-lg overflow-hidden">
                 <Image
                   src={car.image}
                   alt={car.name}
-                  width={300}
-                  height={200}
-                  className="rounded-lg mb-4"
+                  width={380}
+                  height={284}
+                  className="rounded-t-lg"
                 />
-                <h3 className="text-lg font-semibold">{car.name}</h3>
-                <p className="text-gray-500 text-sm">{car.type}</p>
-                <p className="text-accent font-bold">
-                  {car.pricePerDay} FCFA / Jour
-                </p>
-                <div className="flex justify-center space-x-2 mt-2">
-                  {car.features.map((feature, index) => (
-                    <span
-                      key={index}
-                      className="text-xs bg-purple-100 text-accent px-2 py-1 rounded-full"
-                    >
-                      {feature}
-                    </span>
-                  ))}
-                </div>
+                <div className="p-5">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <div className="text-sm text-gray-500">{car.type}</div>
+                      <h3 className="text-lg font-bold uppercase text-gray-800">
+                        {car.name}
+                      </h3>
+                      <h3 className="text-accent font-semibold uppercase">
+                        {car.pricePerDay} FCFA / Jour
+                      </h3>
+                    </div>
 
-                <button className="btn btn-sm btn-accent xl:max-w-full mt-4">
-                  Voir les details
-                </button>
+                    <div className="flex gap-x-1 text-yellow-500">
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-x-4 mb-4">
+                    {car.info.map((item: any, index: number) => {
+                      return (
+                        <div
+                          key={index}
+                          className="flex flex-col items-center text-center"
+                        >
+                          <div className="bg-primary w-12 h-12 rounded-full flex justify-center items-center mb-2 shadow-md">
+                            <Image
+                              src={item.icon}
+                              width={24}
+                              height={24}
+                              alt={item.text}
+                            />
+                          </div>
+                          <div className="text-xs text-gray-600 uppercase">
+                            {item.text}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <button className="btn btn-accent btn-lg w-full py-3 rounded-lg">
+                    Voir plus
+                  </button>
+                </div>
               </div>
             ))}
           </div>

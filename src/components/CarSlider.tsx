@@ -217,95 +217,88 @@ const cars = [
 ];
 function CarSlider() {
   return (
-    <motion.div
-  variants={fadeIn("down", 0.2)}
-  initial="hidden"
-  whileInView={"show"}
-  viewport={{ once: false, amount: 0.6 }}
-  className="container mx-auto px-4"
->
-  <Swiper
-    breakpoints={{
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 15,
-      },
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 32,
-      },
-      1260: {
-        slidesPerView: 3,
-        spaceBetween: 32,
-      },
-    }}
-  >
-    {cars.map((car: any, index: any) => {
-      return (
-        <SwiperSlide key={index}>
-          <div className="max-w-[385px] mx-auto sm:mx-0 bg-gray-100 shadow-sm rounded-lg overflow-hidden">
-            <Image
-              src={car.img}
-              alt={car.name}
-              width={380}
-              height={284}
-              className="rounded-t-lg"
-            />
-            <div className="p-5">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <div className="text-sm text-gray-500">{car.type}</div>
-                  <h3 className="text-lg font-bold uppercase text-gray-800">
-                    {car.name}
-                  </h3>
-                  <h3 className="text-accent font-semibold uppercase">
-                    {car.price} FCFA / Jour
-                  </h3>
-                </div>
-
-                <div className="flex gap-x-1 text-yellow-500">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </div>
-              </div>
-
-              <div className="flex gap-x-4 mb-4">
-                {car.info.map((item: CarInfo, index: number) => {
-                  return (
-                    <div
-                      key={index}
-                      className="flex flex-col items-center text-center"
-                    >
-                      <div className="bg-primary w-12 h-12 rounded-full flex justify-center items-center mb-2 shadow-md">
-                        <Image
-                          src={item.icon}
-                          width={24}
-                          height={24}
-                          alt={item.text}
-                        />
-                      </div>
-                      <div className="text-xs text-gray-600 uppercase">
-                        {item.text}
-                      </div>
+  
+      <Swiper
+        breakpoints={{
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 15,
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 32,
+          },
+          1260: {
+            slidesPerView: 3,
+            spaceBetween: 32,
+          },
+        }}
+      >
+        {cars.map((car: any, index: any) => {
+          return (
+            <SwiperSlide key={index}>
+              <div className="max-w-[385px] mx-auto sm:mx-0 bg-gray-100 shadow-sm rounded-lg overflow-hidden">
+                <Image
+                  src={car.img}
+                  alt={car.name}
+                  width={380}
+                  height={284}
+                  className="rounded-t-lg"
+                />
+                <div className="p-5">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <div className="text-sm text-gray-500">{car.type}</div>
+                      <h3 className="text-lg font-bold uppercase text-gray-800">
+                        {car.name}
+                      </h3>
+                      <h3 className="text-accent font-semibold uppercase">
+                        {car.price} FCFA / Jour
+                      </h3>
                     </div>
-                  );
-                })}
+
+                    <div className="flex gap-x-1 text-yellow-500">
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-x-4 mb-4">
+                    {car.info.map((item: CarInfo, index: number) => {
+                      return (
+                        <div
+                          key={index}
+                          className="flex flex-col items-center text-center"
+                        >
+                          <div className="bg-primary w-12 h-12 rounded-full flex justify-center items-center mb-2 shadow-md">
+                            <Image
+                              src={item.icon}
+                              width={24}
+                              height={24}
+                              alt={item.text}
+                            />
+                          </div>
+                          <div className="text-xs text-gray-600 uppercase">
+                            {item.text}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <button className="btn btn-accent btn-lg w-full py-3 rounded-lg">
+                    Voir plus
+                  </button>
+                </div>
               </div>
-
-              <button className="btn btn-accent btn-lg w-full py-3 rounded-lg">
-                Voir plus
-              </button>
-            </div>
-          </div>
-        </SwiperSlide>
-      );
-    })}
-  </Swiper>
-</motion.div>
-
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+  
   );
 }
 
